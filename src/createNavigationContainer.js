@@ -88,10 +88,12 @@ export default function createNavigationContainer<A: *, O: *>(
       const params = {};
       const delimiter = this.props.uriPrefix || '://';
       let path = url.split(delimiter)[1];
-      if (typeof path === 'undefined') {
-        path = url;
-      }
-      return {
+	if (typeof path === 'undefined') {
+            path = url;
+	} else if (path === '') {
+            path = '/';
+	}
+	return {
         path,
         params,
       };
